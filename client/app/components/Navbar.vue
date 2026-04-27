@@ -1,20 +1,13 @@
-
-
 <script setup>
-
 </script>
-
 
 <template>
   <nav>
     <NuxtLink to="/">Home</NuxtLink>
 
-    <NuxtLink v-if="!user" to="/login">
-      Login
-    </NuxtLink>
+    
+    <NuxtLink to="/login" class="user-access">Cuenta</NuxtLink>
 
-    <span v-else>
-      {{ user.email }}
-    </span>
   </nav>
+
 </template>

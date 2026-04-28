@@ -103,7 +103,7 @@ const handleRegister = async () => {
     })
 
     const redirect = route.query.redirect as string | undefined
-    await navigateTo(redirect ?? '/dashboard')
+    await navigateTo(redirect ?? '/')
   } catch (err: any) {
     const status = err?.response?.status
 

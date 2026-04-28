@@ -7,6 +7,19 @@ const isCartOpen = ref(false)
 const isScrolled = ref(false)
 
 
+const auth = useAuthStore()
+
+
+onMounted(() => {
+  window.addEventListener('scroll', () => {
+    isScrolled.value = window.scrollY > 50
+  })
+})
+
+const handleLogout = async () => {
+  await auth.logout()
+  await navigateTo('/login')
+}
 
 
 // Datos de ejemplo para el carrito (Tus datos originales)
@@ -47,9 +60,33 @@ onMounted(() => {
           <button class="action-btn" @click="isCartOpen = true">
             Bolsa <span class="cart-badge">({{ cartItems.length }})</span>
           </button>
-          <NuxtLink to="/login" class="user-access">Cuenta</NuxtLink>  
 
 
+
+
+          <div class="nav-group right">
+        <!-- <button class="action-btn search">Buscar</button> -->
+        <button class="action-btn" @click="isCartOpen = true">
+        <!-- Bolsa <span class="cart-badge">({{ cartItems.length }})</span> -->
+        </button>
+
+        
+
+
+
+  <!-- Mostrar nombre si está autenticado -->
+  <div v-if="auth.isAuthenticated" class="user-access">
+    <span class="username">Hola, {{ auth.user?.name }}</span>
+    <button @click="handleLogout" class="logout-btn">Cerrar sesión</button>
+  </div>
+
+  <!-- Si no está autenticado -->
+  <NuxtLink v-else to="/login" class="user-access">Cuenta</NuxtLink>
+</div>
+
+
+
+          <!-- <NuxtLink to="/login" class="user-access">Cuenta</NuxtLink>   -->
         </div>
       </div>
     </header>

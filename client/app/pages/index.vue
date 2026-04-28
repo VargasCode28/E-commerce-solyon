@@ -63,21 +63,6 @@ const products = ref([
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <section class="journal-section">
       <div class="section-divider"></div>
       <div class="journal-header">

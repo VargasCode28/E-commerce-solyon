@@ -66,9 +66,14 @@ const handleLogin = async () => {
   try {
     await auth.login(email.value, password.value)
     const redirect = route.query.redirect as string | undefined
-    await navigateTo(redirect ?? '/dashboard')                  //CHANGE THIS FOR OTHER ROUTES
+    await navigateTo(redirect ?? '/')                  //CHANGE THIS FOR OTHER ROUTES
   } catch (err: any) {
     const status = err?.response?.status
+
+
+
+
+    
 
     if (status === 401) {
       errorMessage.value = 'Credenciales incorrectas.'
